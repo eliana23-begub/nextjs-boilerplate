@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tienda virtual</title>
+    <style>
+ body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2fe9d9;
+        }
+        header {
+            background-color: #8923e9;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .product {
+            background: rgb(255, 29, 161);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        }
+        .product img {
+            max-width: 100%;
+            border-bottom: 1px solid #ddd;
+        }
+        .product h3 {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .product p {
+            font-size: 1em;
+            color: #666;
+            margin: 5px;
+        }
+        .product .price {
+            color: #007bff;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .product button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product button:hover {
+            background-color: #771dec;
+        }
+        .form-popup {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 3px solid #0e6cf8;
+            z-index: 9;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        .form-popup input,
+        .form-popup select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-popup button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            color: rgb(248, 225, 225);
+        }
+        .form-popup .submit {
+            background-color: #007bff;
+        }
+        .form-popup .cancel {
+            background-color: red;
+        }
+
+    </style>
+     <script>
+        function openForm(product) {
+            document.getElementById("producto").value = product;
+            document.getElementById("form-popup").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("form-popup").style.display = "none";
+        }
+
+        function saveData() {
+            const nombre = document.getElementById("nombre").value;
+            const direccion = document.getElementById("direccion").value;
+            const pago = document.getElementById("pago").value;
+            const producto = document.getElementById("producto").value;
+
+            const data = `Nombre: ${nombre}, Dirección: ${direccion}, Forma de Pago: ${pago}, Producto: ${producto}\n`;
+            const blob = new Blob([data], { type: 'text/csv' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'ventas.csv';
+            a.click();
+
+            alert("¡Compra registrada exitosamente!");
+            closeForm();
+        }
+
+        </script>
+
+</head>
+<body>
+    <header>
+        <h1>Tienda en Línea katty</h1>
+    </header>
+
+    <div class="container">
+        <div class="product">
+            <img src="pistola 8.jpg" alt="Producto 1">
+            <img src="pistola2.jpg" alt="Producto 1">
+            <h3>jugetes de niño</h3>
+            <p> pistola con balines de hidrogel.</p>
+            <p>Colores: Rojo, Azul</p>
+            <p>precio $5.00</p>
+            <button onclick="openForm('Producto 1')">Comprar</button>
+        </div>
+       
+        <div class="product">
+            <img src="pistola 3.jpg"alt="Producto 2">
+            <img src="pistola 6.jpg"alt="Producto 2">
+            <img src="pistola 5.jpg"alt="Producto 2">
+            <h3>juguetes</h3>
+            <p>pistolas con punteria .</p>
+            <p>diseños militar, policia</p>
+            <p >precio$3.50</p>
+            <button onclick="openForm('Producto 2')">Comprar</button>
+        </div>
+
+        <div class="product">
+            <img src="bolsos 3.jpg"alt="Producto 3">
+            <img src="bolsos.jpg"alt="Producto 3">
+            <img src="bolsos1.jpg"alt="Producto 3">
+            <h3>bolsos</h3>
+            <p>bolsos de make up</p>
+            <p>Colores: rosa, Blanco</p>
+            <p>precio$3.00</p>
+            <button onclick="openForm('Producto 3')">Comprar</button>
+        </div>
+        <div class="product">
+            <img src="polvo.jpg"alt="Producto 3">
+            <img src="polvo1.jpg"alt="Producto 3">
+            <h3>maquillaje</h3>
+            <p>polvos compacto </p>
+            <p>tonos natural,canela, morena </p>
+            <p>precio$2.50</p>
+            <button onclick="openForm('Producto 4')">Comprar</button>
+        </div>
+        <div class="product">
+            <img src="labiales.jpg"alt="Producto 4">
+            <h3>labiales</h3>
+            <p>tinta mate</p>
+            <p>tonos rosa,rojo,morado</p>
+            <p>precio$1.50</p>
+            <button onclick="openForm('Producto 5')">Comprar</button>
+        </div>
+        <div class="product">
+            <img src="combo de maquillaje.jpg"alt="Producto 5">
+            <img src="combo.jpg"alt="Producto 5">
+            <h3>combos</h3>
+            <p>combo incluye crema karsell,perfume aceite karsell </p>
+            <p>precio$8.99</p>
+            <button onclick="openForm('Producto 5')">Comprar</button>
+        </div>
+        <div class="product">
+        <img src="perfumes 1.jpg"alt="Producto 6">
+        <img src="perfumes2.jpg"alt="Producto 6">
+        <h3>perfumeria</h3>
+        <p>perfume de hombre </p>
+        <p>precio$2.00</p>
+        <button onclick="openForm('Producto 5')">Comprar</button>
+    </div>
+
+
+
+    </div>
+ <div class="form-popup" id="form-popup">
+        <h3>Formulario de Compra</h3>
+        <form id="purchase-form">
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="direccion">Dirección de Envío:</label>
+            <input type="text" id="direccion" name="direccion" required>
+            <label for="pago">Forma de Pago:</label>
+            <select id="pago" name="pago" required
+                <option value="tarjeta">Tarjeta de Crédito</option>
+                <option value="paypal">PayPal</option>
+                <option value="transferencia">Transferencia Bancaria</option>
+            </select>
+            <input type="hidden" id="producto" name="producto">
+            <button type="button" class="submit" onclick="saveData()">Enviar</button>
+            <button type="button" class="cancel" onclick="closeForm()">Cancelar</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Tienda Virtual. Todos los derechos reservados.</p>
+    </footer>
+
+   
+</body>
+</html>
